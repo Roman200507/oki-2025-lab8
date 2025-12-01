@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Моє завдання</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #e8f0ff, #f6faff);
+            font-family: Arial, sans-serif;
+        }
+        table {
+            border: 1px solid #000;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 6px 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Моє завдання</h1>
+
+<p>
+    <a href="index.html">Головна</a> |
+    <a href="task.html">Моє завдання</a> |
+    <a href="team.html">Учасники команди</a>
+</p>
+
+<p>
+    Створити таблицю множення розміром 10×10, де:
+    <br>
+    — числа 11–20 множаться на № варіанта (26);
+    <br>
+    — інша сторона таблиці — числа, кратні 7, починаючи з 14.
+</p>
+
+<table id="multTable" border="1" cellpadding="5" cellspacing="0"></table>
+
+<script>
+const variant = 26;
+const rowNumbers = [];     // 10 значень: 11–20, помножені на варіант
+const colNumbers = [];     // 10 значень: 14, 21, 28, ..., 77
+
+for (let i = 11; i <= 20; i++) {
+    rowNumbers.push(i * variant);
+}
+
+for (let i = 1; i <= 10; i++) {
+    colNumbers.push(14 + (i - 1) * 7);
+}
+
+let table = document.getElementById("multTable");
+
+let headerRow = "<tr><th>Варіант 26</th>";
+colNumbers.forEach(num => {
+    headerRow += `<th>${num}</th>`;
+});
+headerRow += "</tr>";
+table.innerHTML += headerRow;
+
+for (let i = 0; i < 10; i++) {
+    let row = `<tr><th>${rowNumbers[i]}</th>`;
+    for (let j = 0; j < 10; j++) {
+        row += `<td>${rowNumbers[i] * colNumbers[j]}</td>`;
+    }
+    row += "</tr>";
+    table.innerHTML += row;
+}
+</script>
+
+</body>
+</html>
